@@ -15,7 +15,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://www.linkedin.com/in/truman-tong/)]
 [[github](https://github.com/trumantong8)]
-[[portfolio](team/trumantong8.md)]
 
 * Role: Project Advisor
 * Responsibilities: Integration, Ui, Coding, Rallier
@@ -33,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/legendgirlie47.png" width="200px">
 
-[[github](http://github.com/legendgirlie47)][[portfolio](team/johndoe.md)]
+[[github](http://github.com/legendgirlie47)]
 
 * Role: Developer
 * Responsibilities: Code quality 
@@ -43,7 +42,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/sr-magicturtle.png" width="200px">
 
 [[github](http://github.com/sr-magicturtle)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Documentation
@@ -53,7 +51,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhangshuhan05.png" width="200px">
 
 [[github](http://github.com/zhangshuhan05)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Testing + Integration 
