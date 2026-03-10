@@ -27,6 +27,8 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    public static final boolean confirmConfirmation = false;
+
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
