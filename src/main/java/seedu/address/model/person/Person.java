@@ -70,8 +70,18 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        if (otherPerson == null) {
+            return false;
+        }
+        //reject same email except placeholder email
+        boolean samePhone = otherPerson.getPhone().equals(getPhone());
+        boolean thisEmailIsPlaceholder = getEmail().toString().equals("unknown@example.com");
+        boolean otherEmailIsPlaceholder = otherPerson.getEmail().toString().equals("unknown@example.com");
+        boolean sameRealEmail = !thisEmailIsPlaceholder
+                && !otherEmailIsPlaceholder
+                && otherPerson.getEmail().toString().equalsIgnoreCase(getEmail().toString());
+
+        return samePhone || sameRealEmail;
     }
 
     /**
