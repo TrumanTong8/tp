@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-public class RemoveTagCommand extends Command {
+public class TagRemoveCommand extends Command {
     private final Tag tag;
     private final Index index;
 
@@ -28,7 +28,7 @@ public class RemoveTagCommand extends Command {
     public static final String MESSAGE_INVALID_PERSON= "The person does not exist in the address book.";
     public static final String MESSAGE_INVALID_TAG = "Invalid value: tag must be 1–20 chars (a-z,0-9,-).";
 
-    public RemoveTagCommand(Tag tag, Index index) {
+    public TagRemoveCommand(Tag tag, Index index) {
         this.tag = tag;
         this.index = index;
     }
@@ -74,11 +74,11 @@ public class RemoveTagCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof RemoveTagCommand)) {
+        if (!(other instanceof TagRemoveCommand)) {
             return false;
         }
 
-        RemoveTagCommand otherCommand = (RemoveTagCommand) other;
+        TagRemoveCommand otherCommand = (TagRemoveCommand) other;
         return index.equals(otherCommand.index) && tag.equals(otherCommand.tag);
     }
 
