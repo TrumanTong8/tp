@@ -10,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.ConfirmationInterface;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,10 +26,19 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    public static final String MESSAGE_DELETE_CANCELLED =
+            "Delete cancelled.";
     private final Index targetIndex;
+    private final ConfirmationInterface confirmationInterface;
 
-    public DeleteCommand(Index targetIndex) {
+    /**
+     * Creates a DeleteCommand to delete the person at the specified {@code targetIndex}.
+     * @param targetIndex person's index.
+     * @param confirmationInterface interface to trigger confirmation.
+     */
+    public DeleteCommand(Index targetIndex, ConfirmationInterface confirmationInterface) {
         this.targetIndex = targetIndex;
+        this.confirmationInterface = confirmationInterface;
     }
 
     @Override
@@ -41,6 +51,14 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // confirmation message
+        String displayMessage = Messages.format(personToDelete);
+        if (!confirmationInterface.confirm(
+                "Are you sure you want to delete " + displayMessage + "?")) {
+            return new CommandResult(MESSAGE_DELETE_CANCELLED);
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
