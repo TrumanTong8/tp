@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -11,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * View contact details of person identified with its displayed index from the address book.
+ * ViewCommandParser contact details of person identified with its displayed index from the address book.
  */
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
@@ -39,6 +40,9 @@ public class ViewCommand extends Command {
         }
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
+        Predicate<Person> predicate = p -> p.equals(personToView);
+        model.updateFilteredPersonList(predicate);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(personToView)));
     }
 }
