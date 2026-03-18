@@ -49,11 +49,14 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
+
         String addressValue = person.getAddress().value;
         String emailValue = person.getEmail().value;
-        address.setText(addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue);
+
+        phone.setText("Phone: " + person.getPhone().value);
+        address.setText("Address: " + (addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue));
         email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
