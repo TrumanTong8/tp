@@ -3,16 +3,17 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.circle.Circle;
 
 /**
  * Removes the circle from a contact in the address book.
+ * The contact is identified by its index in the filtered person list.
  */
 public class CircleRemoveCommand extends Command {
     public static final String COMMAND_WORD = "circlerm";
@@ -24,7 +25,13 @@ public class CircleRemoveCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Constructs a CircleRemoveCommand to remove a circle from a contact.
+     *
+     * @param index the index of the contact in the filtered person list
+     */
     public CircleRemoveCommand(Index index) {
+        requireNonNull(index);
         this.index = index;
     }
 
@@ -33,7 +40,7 @@ public class CircleRemoveCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size() || index.getOneBased() <= 0) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
@@ -50,13 +57,26 @@ public class CircleRemoveCommand extends Command {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.empty()
+            Optional.empty()
         );
 
         model.setPerson(personAtIndex, editedPerson);
         return new CommandResult(String.format(MESSAGE_CIRCLE_PERSON_SUCCESS, editedPerson.getName()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CircleRemoveCommand)) {
+            return false;
+        }
+
+        CircleRemoveCommand otherCircleRemoveCommand = (CircleRemoveCommand) other;
+        return index.equals(otherCircleRemoveCommand.index);
+    }
 
     @Override
     public String toString() {

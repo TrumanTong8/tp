@@ -1,28 +1,31 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CIRCLE;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Circle;
+import seedu.address.model.circle.Circle;
 import seedu.address.model.person.Person;
 
 /**
  * Adds a circle to a contact in the address book.
+ * The contact is identified by its index in the filtered person list.
+ * The circle must be valid (client, prospect, or friend) and not already exist for the contact.
  */
 public class CircleAddCommand extends Command {
     public static final String COMMAND_WORD = "circleadd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a circle to a contact.\n"
-        + "Parameters: INDEX c/CIRCLE_NAME\n" + "Example: "
-        + COMMAND_WORD + " 1 c/client";
+        + "Parameters: INDEX " + PREFIX_CIRCLE + "CIRCLE_NAME\n"
+        + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CIRCLE + "client";
 
     public static final String MESSAGE_CIRCLE_PERSON_SUCCESS = "Added circle '%1$s' to %2$s";
     public static final String MESSAGE_CIRCLE_PERSON_FAILURE = "Add failed: contact already has a circle.";
@@ -33,6 +36,12 @@ public class CircleAddCommand extends Command {
     private final Circle circle;
     private final Index index;
 
+    /**
+     * Constructs a CircleAddCommand to add a circle to a contact.
+     *
+     * @param circle the circle to be added
+     * @param index the index of the contact in the filtered person list
+     */
     public CircleAddCommand(Circle circle, Index index) {
         requireNonNull(circle);
         requireNonNull(index);
@@ -45,18 +54,14 @@ public class CircleAddCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size() || index.getOneBased() <= 0) {
-            logger.warning("Index out of bounds in CircleAddCommand: " + index.getOneBased());
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
         Person personAtIndex = lastShownList.get(index.getZeroBased());
         if (personAtIndex.getCircle().isPresent()) {
-            logger.info("Attempted to add circle to a person who already has one: " + personAtIndex.getName());
             throw new CommandException(MESSAGE_CIRCLE_PERSON_FAILURE);
         }
-
-        assert Circle.isValidCircleName(circle.circleName) : "Circle name should always be valid";
 
         Person editedPerson = new Person(
             personAtIndex.getName(),
@@ -80,11 +85,14 @@ public class CircleAddCommand extends Command {
         if (other == this) {
             return true;
         }
+
+        // instanceof handles nulls
         if (!(other instanceof CircleAddCommand)) {
             return false;
         }
-        CircleAddCommand o = (CircleAddCommand) other;
-        return index.equals(o.index) && circle.equals(o.circle);
+
+        CircleAddCommand otherCircleAddCommand = (CircleAddCommand) other;
+        return index.equals(otherCircleAddCommand.index) && circle.equals(otherCircleAddCommand.circle);
     }
 
     @Override
