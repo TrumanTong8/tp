@@ -16,9 +16,14 @@ import seedu.address.model.person.Person;
  * The contact is identified by its index in the filtered person list.
  */
 public class CircleRemoveCommand extends Command {
+
     public static final String COMMAND_WORD = "circlerm";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the circle from a contact in the address book.\n"
-        + "Parameters: INDEX\n" + "Example: " + COMMAND_WORD + " 1";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Removes the circle from a contact in the address book.\n"
+        + "Parameters: INDEX\n"
+        + "Example: " + COMMAND_WORD + " 1";
+
     public static final String MESSAGE_CIRCLE_PERSON_SUCCESS = "Removed circle from %1$s";
     public static final String MESSAGE_CIRCLE_PERSON_FAILURE = "Remove failed: contact does not have a circle set.";
     public static final String MESSAGE_INVALID_PERSON = "The person does not exist in the address book.";

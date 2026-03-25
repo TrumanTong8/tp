@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
  * The circle must be valid (client, prospect, or friend) and not already exist for the contact.
  */
 public class CircleAddCommand extends Command {
+
     public static final String COMMAND_WORD = "circleadd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a circle to a contact.\n"
@@ -77,7 +78,8 @@ public class CircleAddCommand extends Command {
         model.setPerson(personAtIndex, editedPerson);
         logger.fine("Circle added: " + circle.circleName + " to person: " + editedPerson.getName());
 
-        return new CommandResult(String.format(MESSAGE_CIRCLE_PERSON_SUCCESS, circle.circleName, editedPerson.getName()));
+        return new CommandResult(String.format(MESSAGE_CIRCLE_PERSON_SUCCESS,
+            circle.circleName, editedPerson.getName()));
     }
 
     @Override

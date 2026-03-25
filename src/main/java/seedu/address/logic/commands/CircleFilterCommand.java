@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
  * Keyword matching is case-insensitive.
  */
 public class CircleFilterCommand extends Command {
+
     public static final String COMMAND_WORD = "circlefilter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all contacts in the given circle.\n"
