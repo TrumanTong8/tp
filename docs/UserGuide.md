@@ -371,3 +371,7 @@ Action | Format, Examples
 **Tag Remove** | `tagrm INDEX t/TAG`<br> e.g., `tagrm 1 t/friend`
 **Note Add** | `note INDEX: NOTE`<br> e.g., `note 1: looking for student coverage`
 **Note Clear** | `noteclear INDEX`<br> e.g., `noteclear 1`
+**Circle Add** | `circleadd INDEX c/CIRCLE`<br> e.g., `circleadd 1 c/client`
+**Circle Remove** | `circlerm INDEX`<br> e.g., `circlerm 1`
+**Circle Filter** | `circlefilter CIRCLE`<br> e.g., `circlefilter client`
+
