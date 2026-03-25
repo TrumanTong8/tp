@@ -65,6 +65,9 @@ public class NoteAddCommand extends Command {
         String updatedNote = existingNote.isEmpty()
                 ? note.trim()
                 : existingNote + "\n" + note.trim();
+        if (updatedNote.split("\\s+").length > NoteAddCommandParser.MAX_WORD_COUNT) {
+            throw new CommandException(NoteAddCommandParser.MESSAGE_WORD_LIMIT_EXCEEDED);
+        }
         Person editedPerson = new Person(
                 personToEdit.getName(),
                 personToEdit.getPhone(),

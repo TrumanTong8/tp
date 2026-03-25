@@ -107,9 +107,6 @@ public class NoteAddCommandTest {
 
     @Test
     public void execute_wordLimitExceeded_throwsCommandException() {
-        // Build a note with 201 words
-        String longNote = "word ".repeat(201).trim();
-
         // Start a person with 100 words in their note
         Person original = model.getFilteredPersonList().get(0);
         String existingNote = "word ".repeat(100).trim();
