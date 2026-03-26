@@ -230,14 +230,14 @@ Examples:
 
 Adds a note to an existing person in the address book.
 
-Format: `note INDEX: NOTE`
+Format: `note INDEX note/NOTE`
 
 * Adds a note to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * The new note will be appended to existing notes of the person.
 * When viewing a person, each note will be shown in a new line.
 
 Examples:  
-* `note 1: Family of four, looking for family coverage` adds the note `Family of four, looking for family coverage` to the 1st person in the list.
+* `note 1 note/Family of four, looking for family coverage` adds the note `Family of four, looking for family coverage` to the 1st person in the list.
 
 
 ### Clear a person's notes : `noteclear`
