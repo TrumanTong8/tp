@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -35,6 +36,14 @@ public class PersonCard extends UiPart<Region> {
     private Label followUpDate;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox followUpRow;
+    @FXML
+    private HBox notesRow;
+    @FXML
+    private Label notes;
+    @FXML
+    private Label circleBadge;
 
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
@@ -49,10 +58,11 @@ public class PersonCard extends UiPart<Region> {
         String emailValue = person.getEmail().value;
 
         phone.setText("Phone: " + person.getPhone().value);
-        address.setText(addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue);
+        address.setText("Address: " + (addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue));
         email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
 
         followUpDate.getStyleClass().add("follow-up-date-value");
+        followUpDate.getStyleClass().removeAll("follow-up-soon", "follow-up-overdue");
 
         if (person.getFollowUpDate().isPresent()) {
             LocalDate date = person.getFollowUpDate().get().value;
@@ -67,8 +77,47 @@ public class PersonCard extends UiPart<Region> {
             followUpDate.setText("-");
         }
 
+        circleBadge.getStyleClass().removeAll("circle-client", "circle-prospect", "circle-friend");
+
+        person.getCircle().ifPresentOrElse(c -> {
+            String circle = c.trim().toLowerCase();
+            circleBadge.setText(circle);
+            setShown(circleBadge, true);
+
+            switch (circle) {
+            case "client":
+                circleBadge.getStyleClass().add("circle-client");
+                break;
+            case "prospect":
+                circleBadge.getStyleClass().add("circle-prospect");
+                break;
+            case "friend":
+                circleBadge.getStyleClass().add("circle-friend");
+                break;
+            default:
+                break;
+            }
+        }, () -> setShown(circleBadge, false));
+
+        person.getNotes().ifPresentOrElse(n -> {
+            String trimmed = n.trim();
+            if (trimmed.isEmpty()) {
+                setShown(notesRow, false);
+                return;
+            }
+
+            setShown(notesRow, true);
+            notes.setText(trimmed);
+        }, () -> setShown(notesRow, false));
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    private static void setShown(Node node, boolean shown) {
+        node.setVisible(shown);
+        node.setManaged(shown);
+    }
+
 }
