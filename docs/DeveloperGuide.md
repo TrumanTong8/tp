@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagramv1.2.png" width="450" />
+<img src="images/ModelClassDiagramv2.png" width="450" />
 
 The `Model` component,
 
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It keeps a `Tag` list in the `AddressBook`, which each `Person` references. This allows the `AddressBook` to maintain a single `Tag` object for each unique tag, instead of each `Person` storing separate `Tag` objects. In our current implementation, a `Person` may also store additional fields such as `Note`, `FollowUpDate`, and `Circle`.<br>
 
-<img src="images/BetterModelClassDiagramv1.2.png" width="450" />
+<img src="images/BetterModelClassDiagramV2.png" width="450" />
 
 </div>
 
@@ -460,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Mainstream OS**: Windows, Linux, Unix, macOS
 * **AddressBook**: The system that stores and manages contacts
 * **Contact**: An entry representing a person, containing fields such as name, phone number, and email
 * **Index**: The number shown in a listed result that identifies a specific contact in that displayed list
