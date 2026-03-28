@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Tag add feature
 
-Users can add tags to contacts for quick categorisation using the `tagadd` command. The implementation of this feature is shown in the sequence diagram below.
+Users can add tags to contacts for categorisation, using the `tagadd` command. The implementation of this feature is shown in the sequence diagram below.
 
 #### The sequence diagram
 ![Tag Add Sequence Diagram](images/TagSequenceDiagram.png)

@@ -31,10 +31,10 @@ AddressBookParser -> TagAddCommandParser : parse("1 t/friends")
 activate TagAddCommandParser
 
 create TagAddCommand
-TagAddCommandParser -> TagAddCommand
+TagAddCommandParser -> TagAddCommand : new TagAddCommand(tag, index)
 activate TagAddCommand
 
-TagAddCommand --> TagAddCommandParser :
+TagAddCommand --> TagAddCommandParser : t
 deactivate TagAddCommand
 
 TagAddCommandParser --> AddressBookParser : t
