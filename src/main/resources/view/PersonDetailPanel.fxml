@@ -13,38 +13,38 @@
 
     <HBox spacing="8">
         <Label fx:id="name" styleClass="person-name-label"/>
-        <Label fx:id = "circleBadge"
-               text = "client"
-               styleClass= "circle-badge"
-               visible="false" managed="false"/>
+        <Label fx:id="circleBadge"
+               text="client"
+               styleClass="circle-badge"
+               visible="false"
+               managed="false"/>
     </HBox>
 
-    <FlowPane fx:id="tags" alignment="TOP_LEFT" hgap="10" vgap="10" prefWrapLength="220" prefWidth="220" />
+    <FlowPane fx:id="tags" alignment="TOP_LEFT" hgap="10" vgap="10" prefWrapLength="220" prefWidth="220"/>
 
     <HBox spacing="8">
-        <Label text="Phone:" StyleClass="view-title"/>
-        <Label fx:id="phone" StyleClass="view-text"/>
-    </HBox>
-
-    <HBox spacing="8">
-        <Label text="Email:" StyleClass="view-title"/>
-        <Label fx:id="email" StyleClass="view-email-text"/>
+        <Label text="Phone:" styleClass="view-title"/>
+        <Label fx:id="phone" styleClass="view-text"/>
     </HBox>
 
     <HBox spacing="8">
-        <Label text="Address:" StyleClass="view-title"/>
-        <Label fx:id="address" StyleClass="view-text"/>
+        <Label text="Email:" styleClass="view-title"/>
+        <Label fx:id="email" styleClass="view-email-text"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Label text="Address:" styleClass="view-title"/>
+        <Label fx:id="address" styleClass="view-text" wrapText="true"/>
     </HBox>
 
     <HBox fx:id="notesRow" spacing="8">
-        <Label text="Notes:" StyleClass="view-title"/>
-        <Label fx:id="notes" StyleClass="view-text" wrapText="true"/>
+        <Label text="Notes:" styleClass="view-title"/>
+        <Label fx:id="notes" styleClass="view-text" wrapText="true"/>
     </HBox>
 
     <HBox fx:id="followUpRow" spacing="8">
-        <Label text="Follow Up:" StyleClass="view-title"/>
+        <Label text="Follow Up:" styleClass="view-title"/>
         <Label fx:id="followUpDate" styleClass="view-text"/>
     </HBox>
 
 </VBox>
-

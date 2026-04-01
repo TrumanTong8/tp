@@ -89,4 +89,3 @@ public class PersonDetailPanel extends UiPart<Region> {
         }, () -> setShown(circleBadge, false));
     }
 }
-
