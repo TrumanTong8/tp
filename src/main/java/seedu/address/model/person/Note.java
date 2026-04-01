@@ -25,6 +25,7 @@ public class Note {
     public Note(String note) {
         requireNonNull(note);
         checkArgument(isValidNote(note), MESSAGE_CONSTRAINTS);
+        checkArgument(note.trim().split("\\s+").length <= MAX_CHAR_COUNT , MESSAGE_CHAR_LIMIT_EXCEEDED);
         this.value = note;
     }
 
