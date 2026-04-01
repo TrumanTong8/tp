@@ -42,11 +42,12 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
-     * Parses user input into command for execution.
+     * Parses user input into a command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput Full user input string.
+     * @return The command based on the user input.
+     * @throws ParseException If the user input does not conform to the expected format or contains an unknown command.
+     *         For unknown commands, the message may include a suggested command word if user added extra whitespaces.
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -126,7 +127,12 @@ public class AddressBookParser {
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            // new
+            String message = CommandSuggestionUtil.getSuggestion(commandWord, arguments)
+                .map(suggestion -> MESSAGE_UNKNOWN_COMMAND + "\nDid you mean: " + suggestion + "?")
+                .orElse(MESSAGE_UNKNOWN_COMMAND);
+            // new
+            throw new ParseException(message);
         }
     }
 
