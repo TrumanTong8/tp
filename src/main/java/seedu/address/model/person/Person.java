@@ -81,7 +81,7 @@ public class Person {
     public boolean isDefaultEmail() {
         boolean result = false;
 
-        if (this.email.toString() == Email.DEFAULT_EMAIL){
+        if (this.email.toString() == Email.DEFAULT_EMAIL) {
             result = true;
         }
 
@@ -94,7 +94,7 @@ public class Person {
     public boolean isDefaultAddress() {
         boolean result = false;
 
-        if (this.address.toString() == Address.DEFAULT_ADDRESS){
+        if (this.address.toString() == Address.DEFAULT_ADDRESS) {
             result = true;
         }
 
