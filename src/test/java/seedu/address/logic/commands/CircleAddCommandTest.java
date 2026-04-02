@@ -4,6 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCircles.CLIENTS;
+import static seedu.address.testutil.TypicalCircles.FRIENDS;
+import static seedu.address.testutil.TypicalCircles.PROSPECTS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -43,10 +48,7 @@ public class CircleAddCommandTest {
         Model model = new ModelManager(createCleanAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(createCleanAddressBook(), new UserPrefs());
 
-        Index index = Index.fromOneBased(1);
-        Circle circle = new Circle("friend");
-
-        Person personAtIndex = model.getFilteredPersonList().get(index.getZeroBased());
+        Person personAtIndex = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person circledPerson = new Person(
             personAtIndex.getName(),
             personAtIndex.getPhone(),
@@ -55,14 +57,14 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle)
+            java.util.Optional.of(FRIENDS)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
 
-        CircleAddCommand command = new CircleAddCommand(circle, index);
+        CircleAddCommand command = new CircleAddCommand(INDEX_FIRST_PERSON, FRIENDS);
         String expectedMessage = String.format(
-            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, circle.getCircleName(), circledPerson.getName());
+            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, FRIENDS.getCircleName(), circledPerson.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -72,10 +74,7 @@ public class CircleAddCommandTest {
         Model model = new ModelManager(createCleanAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(createCleanAddressBook(), new UserPrefs());
 
-        Index index = Index.fromOneBased(1);
-        Circle circle = new Circle("prospect");
-
-        Person personAtIndex = model.getFilteredPersonList().get(index.getZeroBased());
+        Person personAtIndex = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person circledPerson = new Person(
             personAtIndex.getName(),
             personAtIndex.getPhone(),
@@ -84,24 +83,21 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle)
+            java.util.Optional.of(PROSPECTS)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
 
-        CircleAddCommand command = new CircleAddCommand(circle, index);
+        CircleAddCommand command = new CircleAddCommand(INDEX_FIRST_PERSON, PROSPECTS);
         String expectedMessage = String.format(
-            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, circle.getCircleName(), circledPerson.getName());
+            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, PROSPECTS.getCircleName(), circledPerson.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Test friend circle
         model = new ModelManager(createCleanAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(createCleanAddressBook(), new UserPrefs());
 
-        index = Index.fromOneBased(2);
-        circle = new Circle("friend");
-
-        personAtIndex = model.getFilteredPersonList().get(index.getZeroBased());
+        personAtIndex = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         circledPerson = new Person(
             personAtIndex.getName(),
             personAtIndex.getPhone(),
@@ -110,14 +106,14 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle)
+            java.util.Optional.of(FRIENDS)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
 
-        command = new CircleAddCommand(circle, index);
+        command = new CircleAddCommand(INDEX_SECOND_PERSON, FRIENDS);
         expectedMessage = String.format(
-            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, circle.getCircleName(), circledPerson.getName());
+            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, FRIENDS.getCircleName(), circledPerson.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -127,7 +123,6 @@ public class CircleAddCommandTest {
         Model expectedModel = new ModelManager(createCleanAddressBook(), new UserPrefs());
 
         Index lastIndex = Index.fromOneBased(model.getFilteredPersonList().size());
-        Circle circle = new Circle("prospect");
 
         Person personAtIndex = model.getFilteredPersonList().get(lastIndex.getZeroBased());
         Person circledPerson = new Person(
@@ -138,14 +133,14 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(circle)
+            java.util.Optional.of(PROSPECTS)
         );
 
         expectedModel.setPerson(personAtIndex, circledPerson);
 
-        CircleAddCommand command = new CircleAddCommand(circle, lastIndex);
+        CircleAddCommand command = new CircleAddCommand(lastIndex, PROSPECTS);
         String expectedMessage = String.format(
-            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, circle.getCircleName(), circledPerson.getName());
+            CircleAddCommand.MESSAGE_CIRCLE_PERSON_SUCCESS, PROSPECTS.getCircleName(), circledPerson.getName());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -154,9 +149,8 @@ public class CircleAddCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        Circle circle = new Circle("client");
 
-        CircleAddCommand command = new CircleAddCommand(circle, outOfBoundIndex);
+        CircleAddCommand command = new CircleAddCommand(outOfBoundIndex, CLIENTS);
 
         assertThrows(CommandException.class,
             CircleAddCommand.MESSAGE_INVALID_PERSON, () -> command.execute(model));
@@ -170,9 +164,8 @@ public class CircleAddCommandTest {
         // So getZeroBased() of a 1-based index 1 would be 0, which is the first element
         // We need an index that exceeds the list size
         Index invalidIndex = Index.fromZeroBased(model.getFilteredPersonList().size() + 1);
-        Circle circle = new Circle("friend");
 
-        CircleAddCommand command = new CircleAddCommand(circle, invalidIndex);
+        CircleAddCommand command = new CircleAddCommand(invalidIndex, FRIENDS);
 
         assertThrows(CommandException.class,
             CircleAddCommand.MESSAGE_INVALID_PERSON, () -> command.execute(model));
@@ -182,11 +175,8 @@ public class CircleAddCommandTest {
     public void execute_personAlreadyHasCircle_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-        Index index = Index.fromOneBased(1);
-        Circle firstCircle = new Circle("client");
-
         // First add a circle
-        Person personAtIndex = model.getFilteredPersonList().get(index.getZeroBased());
+        Person personAtIndex = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personWithCircle = new Person(
             personAtIndex.getName(),
             personAtIndex.getPhone(),
@@ -195,13 +185,12 @@ public class CircleAddCommandTest {
             personAtIndex.getTags(),
             personAtIndex.getFollowUpDate(),
             personAtIndex.getNotes(),
-            java.util.Optional.of(firstCircle)
+            java.util.Optional.of(CLIENTS)
         );
         model.setPerson(personAtIndex, personWithCircle);
 
         // Now try to add another circle
-        Circle secondCircle = new Circle("prospect");
-        CircleAddCommand command = new CircleAddCommand(secondCircle, index);
+        CircleAddCommand command = new CircleAddCommand(INDEX_FIRST_PERSON, PROSPECTS);
 
         assertThrows(CommandException.class,
             CircleAddCommand.MESSAGE_CIRCLE_PERSON_FAILURE, () -> command.execute(model));
@@ -218,7 +207,7 @@ public class CircleAddCommandTest {
                 Index index = Index.fromOneBased(1);
                 Circle circle = new Circle(circleName);
 
-                CircleAddCommand command = new CircleAddCommand(circle, index);
+                CircleAddCommand command = new CircleAddCommand(index, circle);
 
                 // Should not throw exception for valid index and no existing circle
                 try {
@@ -234,18 +223,15 @@ public class CircleAddCommandTest {
 
     @Test
     public void equals() {
-        Circle client = new Circle("client");
-        Circle prospect = new Circle("prospect");
-
-        CircleAddCommand addClientFirstCommand = new CircleAddCommand(client, Index.fromOneBased(1));
-        CircleAddCommand addClientSecondCommand = new CircleAddCommand(client, Index.fromOneBased(2));
-        CircleAddCommand addProspectFirstCommand = new CircleAddCommand(prospect, Index.fromOneBased(1));
+        CircleAddCommand addClientFirstCommand = new CircleAddCommand(INDEX_FIRST_PERSON, CLIENTS);
+        CircleAddCommand addClientSecondCommand = new CircleAddCommand(INDEX_SECOND_PERSON, CLIENTS);
+        CircleAddCommand addProspectFirstCommand = new CircleAddCommand(INDEX_FIRST_PERSON, PROSPECTS);
 
         // same object -> returns true
         assertTrue(addClientFirstCommand.equals(addClientFirstCommand));
 
         // same values -> returns true
-        CircleAddCommand addClientFirstCommandCopy = new CircleAddCommand(client, Index.fromOneBased(1));
+        CircleAddCommand addClientFirstCommandCopy = new CircleAddCommand(INDEX_FIRST_PERSON, CLIENTS);
         assertTrue(addClientFirstCommand.equals(addClientFirstCommandCopy));
 
         // different types -> returns false
@@ -266,15 +252,8 @@ public class CircleAddCommandTest {
 
     @Test
     public void toString_correct() {
-        Circle client = new Circle("client");
-        Index index = Index.fromOneBased(1);
-        CircleAddCommand command = new CircleAddCommand(client, index);
-
-        String expectedToString = "seedu.address.logic.commands.CircleAddCommand{"
-            + "index=Index 1, circle=[client]"
-            + "}";
-
-        assertTrue(command.toString().contains("index") && command.toString().contains("circle"));
+        CircleAddCommand command = new CircleAddCommand(INDEX_FIRST_PERSON, FRIENDS);
+        assertTrue(command.toString().contains(INDEX_FIRST_PERSON.toString())
+            && command.toString().contains(FRIENDS.getCircleName()));
     }
-
 }

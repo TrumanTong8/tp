@@ -21,24 +21,24 @@ public class CircleAddCommandParserTest {
         // valid arguments with lowercase circle name
         Circle expectedCircle = new Circle("client");
         Index expectedIndex = Index.fromOneBased(1);
-        CircleAddCommand expectedCommand = new CircleAddCommand(expectedCircle, expectedIndex);
+        CircleAddCommand expectedCommand = new CircleAddCommand(expectedIndex, expectedCircle);
 
         assertParseSuccess(parser, "1 c/client", expectedCommand);
 
         // valid arguments with uppercase circle name (should be normalized)
         Circle expectedCircleUpper = new Circle("CLIENT");
-        CircleAddCommand expectedCommandUpper = new CircleAddCommand(expectedCircleUpper, expectedIndex);
+        CircleAddCommand expectedCommandUpper = new CircleAddCommand(expectedIndex, expectedCircleUpper);
         assertParseSuccess(parser, "1 c/CLIENT", expectedCommandUpper);
 
         // valid arguments with mixed case
         Circle expectedCircleMixed = new Circle("ProSpect");
         Index expectedIndex2 = Index.fromOneBased(2);
-        CircleAddCommand expectedCommandMixed = new CircleAddCommand(expectedCircleMixed, expectedIndex2);
+        CircleAddCommand expectedCommandMixed = new CircleAddCommand(expectedIndex2, expectedCircleMixed);
         assertParseSuccess(parser, "2 c/ProSpect", expectedCommandMixed);
 
         // valid arguments with leading/trailing whitespace
         Circle expectedCircleFriend = new Circle("friend");
-        CircleAddCommand expectedCommandFriend = new CircleAddCommand(expectedCircleFriend, expectedIndex);
+        CircleAddCommand expectedCommandFriend = new CircleAddCommand(expectedIndex, expectedCircleFriend);
         assertParseSuccess(parser, "   1   c/friend   ", expectedCommandFriend);
     }
 
@@ -158,7 +158,7 @@ public class CircleAddCommandParserTest {
         // index at boundary
         Circle expectedCircle = new Circle("friend");
         Index expectedIndex = Index.fromOneBased(Integer.MAX_VALUE - 1);
-        CircleAddCommand expectedCommand = new CircleAddCommand(expectedCircle, expectedIndex);
+        CircleAddCommand expectedCommand = new CircleAddCommand(expectedIndex, expectedCircle);
 
         // This should successfully parse even though the index is very large
         // (whether it's valid in the model is a separate concern)
