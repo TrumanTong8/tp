@@ -6,11 +6,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalTags.FRIEND;
 import static seedu.address.testutil.TypicalTags.CLASSMATE;
+import static seedu.address.testutil.TypicalTags.FRIEND;
 import static seedu.address.testutil.TypicalTags.HELLO_WORLD;
-import static seedu.address.testutil.TypicalTags.UPPERCASE;
 import static seedu.address.testutil.TypicalTags.MIXED_CASE;
+import static seedu.address.testutil.TypicalTags.UPPERCASE;
 
 import org.junit.jupiter.api.Test;
 

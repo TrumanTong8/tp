@@ -22,7 +22,8 @@ import seedu.address.model.tag.Tag;
  */
 public class TagAddCommand extends Command {
     public static final String COMMAND_WORD = "tagadd";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds 1 tag to a contact in the address book at a time.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds 1 tag to a contact in"
+        + "the address book at a time.\n"
         + "Parameters: INDEX " + PREFIX_TAG + "TAG\n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG + "classmate";
     public static final int MAX_TAGS_PER_PERSON = 5;
