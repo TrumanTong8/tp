@@ -44,12 +44,26 @@ public class PersonDetailPanel extends UiPart<Region> {
 
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        address.setText(person.getAddress().value);
+
+        String addressValue = person.getAddress().value;
+        address.setText(addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue);
+
+        String emailValue = person.getEmail().value;
+        email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
+        email.getStyleClass().removeAll("person-email-link", "person-field-empty");
+
+        boolean hasEmail = !emailValue.equals("missing@email.empty");
+        if (hasEmail) {
+            email.setText(emailValue);
+            email.getStyleClass().add("person-email-link"); // underline only when real email
+        } else {
+            email.setText("-");
+            email.getStyleClass().add("person-field-empty"); // grey, not underlined
+        }
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .limit(5)
+                .limit(5) // limit to 5 tags to prevent overflow
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         notes.setText(person.getNotes()

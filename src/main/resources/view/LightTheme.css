@@ -169,6 +169,18 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+#viewtags .label {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-padding: 2 6 2 6;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
 .follow-up-date-value {
     -fx-text-fill: #2f4156;
 }
@@ -228,7 +240,7 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 15px;
     -fx-text-fill: #0b63ce;
-    -fx-underline: true;
+    -fx-text-overrun: ellipsis;
 }
 
 .view-name-label {
