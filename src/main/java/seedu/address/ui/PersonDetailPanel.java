@@ -45,20 +45,15 @@ public class PersonDetailPanel extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
 
-        String addressValue = person.getAddress().value;
-        address.setText(addressValue.equals("MISSING_ADDRESS") ? "-" : addressValue);
+        address.setText(person.isDefaultAddress() ? "-" : person.getAddress().value);
 
-        String emailValue = person.getEmail().value;
-        email.setText(emailValue.equals("missing@email.empty") ? "-" : emailValue);
-        email.getStyleClass().removeAll("person-email-link", "person-field-empty");
-
-        boolean hasEmail = !emailValue.equals("missing@email.empty");
-        if (hasEmail) {
-            email.setText(emailValue);
+        email.getStyleClass().removeAll("person-email-link", "view-field-empty");
+        if (!person.isDefaultEmail()) {
+            email.setText(person.getEmail().value);
             email.getStyleClass().add("person-email-link"); // underline only when real email
         } else {
             email.setText("-");
-            email.getStyleClass().add("person-field-empty"); // grey, not underlined
+            email.getStyleClass().add("view-field-empty"); // grey, not underlined
         }
 
         person.getTags().stream()
