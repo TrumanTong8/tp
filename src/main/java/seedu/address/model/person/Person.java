@@ -125,6 +125,45 @@ public class Person {
         return tags.contains(tag);
     }
 
+    public Person addCircle(Circle circle) {
+        return new Person(name, phone, email, address, tags, followUpDate, notes, Optional.ofNullable(circle));
+    }
+
+    public Person removeCircle() {
+        return new Person(name, phone, email, address, tags, followUpDate, notes, Optional.empty());
+    }
+
+    public boolean hasCircle() {
+        return circle.isPresent();
+    }
+
+    /**
+     * Returns a new {@code Person} with the specified {@code note} added.
+     * If a note already exists, the new note is appended with " | " as separator.
+     *
+     * @param note the {@code Note} to add
+     * @return a new {@code Person} instance with the added note
+     */
+    public Person addNote(Note note) {
+        String base = notes.map(Note::toString).orElse("");
+        String incoming = note.toString().trim();
+        String updated = base.isEmpty() ? incoming : base + " | " + incoming;
+        Note combinedNote = new Note(updated);
+        return new Person(name, phone, email, address, tags, followUpDate, Optional.of(combinedNote), circle);
+    }
+
+    public Person clearNote() {
+        return new Person(name, phone, email, address, tags, followUpDate, Optional.empty(), circle);
+    }
+
+    public Person setFollowUpDate(FollowUpDate followUpDate) {
+        return new Person(name, phone, email, address, tags, Optional.of(followUpDate), notes, circle);
+    }
+
+    public Person clearFollowUpDate() {
+        return new Person(name, phone, email, address, tags, Optional.empty(), notes, circle);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

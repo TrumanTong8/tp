@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CIRCLE;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -60,20 +59,11 @@ public class CircleAddCommand extends Command {
         }
 
         Person personAtIndex = lastShownList.get(index.getZeroBased());
-        if (personAtIndex.getCircle().isPresent()) {
+        if (personAtIndex.hasCircle()) {
             throw new CommandException(MESSAGE_CIRCLE_PERSON_FAILURE);
         }
 
-        Person editedPerson = new Person(
-            personAtIndex.getName(),
-            personAtIndex.getPhone(),
-            personAtIndex.getEmail(),
-            personAtIndex.getAddress(),
-            personAtIndex.getTags(),
-            personAtIndex.getFollowUpDate(),
-            personAtIndex.getNotes(),
-            Optional.of(circle)
-        );
+        Person editedPerson = personAtIndex.addCircle(circle);
 
         model.setPerson(personAtIndex, editedPerson);
         logger.fine("Circle added: " + circle.getCircleName() + " to person: " + editedPerson.getName());

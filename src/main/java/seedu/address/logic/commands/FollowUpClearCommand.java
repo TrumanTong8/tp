@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -48,17 +47,7 @@ public class FollowUpClearCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
-
-        Person editedPerson = new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                Optional.empty(),
-                personToEdit.getNotes(),
-                personToEdit.getCircle()
-        );
+        Person editedPerson = personToEdit.clearFollowUpDate();
 
         model.setPerson(personToEdit, editedPerson);
 

@@ -31,13 +31,11 @@ public class CircleAddCommandParser implements Parser<CircleAddCommand> {
                 CircleAddCommand.MESSAGE_USAGE));
         }
 
-        // Ensure no duplicate prefixes
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CIRCLE);
 
         Index index = ParserUtil.parseIndex(
                 argMultimap.getPreamble(), CircleAddCommand.MESSAGE_USAGE);
 
-        // Parse and validate circle name
         String circleName = argMultimap.getValue(PREFIX_CIRCLE).get().trim();
         if (!Circle.isValidCircleName(circleName)) {
             throw new ParseException(Circle.MESSAGE_CONSTRAINTS);

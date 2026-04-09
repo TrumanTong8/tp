@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -51,20 +50,11 @@ public class CircleRemoveCommand extends Command {
         }
 
         Person personAtIndex = lastShownList.get(index.getZeroBased());
-        if (personAtIndex.getCircle().isEmpty()) {
+        if (!personAtIndex.hasCircle()) {
             throw new CommandException(MESSAGE_CIRCLE_PERSON_FAILURE);
         }
 
-        Person editedPerson = new Person(
-            personAtIndex.getName(),
-            personAtIndex.getPhone(),
-            personAtIndex.getEmail(),
-            personAtIndex.getAddress(),
-            personAtIndex.getTags(),
-            personAtIndex.getFollowUpDate(),
-            personAtIndex.getNotes(),
-            Optional.empty()
-        );
+        Person editedPerson = personAtIndex.removeCircle();
 
         model.setPerson(personAtIndex, editedPerson);
         return new CommandResult(String.format(MESSAGE_CIRCLE_PERSON_SUCCESS, editedPerson.getName()));
