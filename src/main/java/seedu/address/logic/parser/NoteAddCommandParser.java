@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NoteAddCommand.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.model.person.Note.MESSAGE_CONSTRAINTS;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.NoteAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Note;
@@ -46,7 +46,7 @@ public class NoteAddCommandParser implements Parser<NoteAddCommand> {
 
         // if index is present but out of range
         if (rawInt <= 0) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(Messages.MESSAGE_OOR_INDEX);
         }
 
         // Validate note is not empty

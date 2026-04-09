@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.NoteAddCommand.MESSAGE_INVALID_INDEX;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.NoteAddCommand;
 import seedu.address.logic.commands.NoteClearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -45,7 +45,7 @@ public class NoteClearCommandParser implements Parser<NoteClearCommand> {
 
         // Check if index is positive
         if (rawInt <= 0) {
-            throw new ParseException(MESSAGE_INVALID_INDEX); // index is present but out of range
+            throw new ParseException(Messages.MESSAGE_OOR_INDEX); // index is present but out of range
         }
 
         Index index = Index.fromOneBased(rawInt);

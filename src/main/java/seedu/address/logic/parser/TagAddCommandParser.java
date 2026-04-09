@@ -50,7 +50,7 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
 
         // index is present but out of range
         if (tempIndex <= 0) {
-            throw new ParseException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new ParseException(Messages.MESSAGE_OOR_INDEX);
         }
 
         Index index = Index.fromOneBased(tempIndex);
