@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.logic.parser.TagAddCommandParser.MESSAGE_ADD_EXCESSIVE_TAGS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalTags.CLASSMATE;
@@ -80,8 +81,7 @@ public class TagAddCommandParserTest {
 
     @Test
     public void parse_multipleTags_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, "1 t/friend t/enemy", expectedMessage);
+        assertParseFailure(parser, "1 t/friend t/enemy", MESSAGE_ADD_EXCESSIVE_TAGS);
     }
 
     @Test

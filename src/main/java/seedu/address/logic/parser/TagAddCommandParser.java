@@ -13,6 +13,8 @@ import seedu.address.model.tag.Tag;
  */
 public class TagAddCommandParser implements Parser<TagAddCommand> {
 
+    public static final String MESSAGE_ADD_EXCESSIVE_TAGS = "Only 1 tag can be added at a time.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the TagAddCommand
      * and returns a TagAddCommand object for execution.
@@ -27,7 +29,7 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
         }
 
         if (argMultimap.getAllValues(PREFIX_TAG).size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_ADD_EXCESSIVE_TAGS);
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble().trim());
