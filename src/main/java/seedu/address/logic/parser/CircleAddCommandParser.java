@@ -24,6 +24,7 @@ public class CircleAddCommandParser implements Parser<CircleAddCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CIRCLE);
 
+        // Ensure the circle prefix is present
         if (!argMultimap.getValue(PREFIX_CIRCLE).isPresent()
             || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -32,13 +33,8 @@ public class CircleAddCommandParser implements Parser<CircleAddCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CIRCLE);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                CircleAddCommand.MESSAGE_USAGE), pe);
-        }
+        Index index = ParserUtil.parseIndex(
+                argMultimap.getPreamble(), CircleAddCommand.MESSAGE_USAGE);
 
         String circleName = argMultimap.getValue(PREFIX_CIRCLE).get().trim();
         if (!Circle.isValidCircleName(circleName)) {
