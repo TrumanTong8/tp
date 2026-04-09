@@ -4,7 +4,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.TagRemoveCommandParser.MESSAGE_REMOVE_EXCESSIVE_TAGS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.TagRemoveCommandParser.MESSAGE_REMOVE_EXCESSIVE_TAGS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
