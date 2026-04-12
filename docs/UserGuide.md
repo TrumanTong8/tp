@@ -338,10 +338,12 @@ A circle refers to the type of relationship the user has with the contact.
 
 Format: `circlerm INDEX`
 
-* The circle will be removed from the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
+* The circle will be removed from the person at the specified `INDEX`. The index refers to the index number shown in 
+the displayed person list. The index **must be a positive integer** `1, 2, 3, …`
 * Only 1 circle can be removed at a time from 1 contact.
 * If the person does not have a circle, the deletion of the circle will not be allowed.
-* To edit an existing circle, you will need to first remove the existing circle using the `circlerm` command, and then add the new circle using the `circleadd` command.
+* To edit an existing circle, you will need to first remove the existing circle using the `circlerm` command, and then 
+add the new circle using the `circleadd` command.
 * Note: A circle can be removed via both the `circlerm` and `edit` commands.
 
 Examples:
@@ -355,7 +357,8 @@ A circle refers to the type of relationship the user has with the contact.
 Format: `circlefilter CIRCLE`
 
 * All contacts with the specified circle will be shown in their index order in the address book.
-* There are only 3 types of circles: `client`, `prospect`, and `friend`. The circle must be one of these 3 types. Any other value given to `circlefilter` will be rejected.
+* There are only 3 types of circles: `client`, `prospect`, and `friend`. The circle must be one of these 3 types. 
+Any other value given to `circlefilter` will be rejected.
 * Note: Circles can only be filtered via the `circlefilter` command.
 
 <div markdown="span" class="alert alert-primary">
@@ -365,7 +368,8 @@ Format: `circlefilter CIRCLE`
 </div>
 
 Examples:
-* `circlefilter client` shows all contacts with the circle `client` in the address book, in their index order in the address book.
+* `circlefilter client` shows all contacts with the circle `client` in the address book, in their index order in the 
+address book.
 * `circlefilter family` will lead to an error message as `family` is not an accepted circle type.
 
 ### Setting follow-up date : `followup`
@@ -374,17 +378,19 @@ Sets or updates the follow-up date for a contact.
 
 Format: `followup INDEX d/DATE`
 
-* Sets the follow-up date for the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** `1, 2, 3, …`
+* Sets the follow-up date for the contact at the specified `INDEX`. The index refers to the index number shown in the 
+displayed person list. The index **must be a positive integer** `1, 2, 3, …`
 * `DATE` must be in the format `YYYY-MM-DD` (e.g. `2026-04-01`).
 * Past dates are allowed, but the app will show a warning after the date is set.
 * Dates more than 5 years from today are allowed, but the app will show a warning after the date is set.
+* Dates in the next 3 days will be <u>**underlined and bolded**</u> to as a visual reminder. 
+If a date has passed, its formatting will be updated when the app is restarted. 
 * Note: A follow-up date can only be added via the `followup` and `edit` commands, but not the `add` command.
 
 Examples:
 * `followup 1 d/2026-04-01` sets the follow-up date of contact 1 to `2026-04-01`.
-* `followup 2 d/2020-01-01` sets the follow-up date of contact 2 to `2020-01-01` and shows a warning because the date is before today.
+* `followup 2 d/2020-01-01` sets the follow-up date of contact 2 to `2020-01-01` and shows a warning because the 
+date is before today.
 * `followup 3 d/26-03-2026` will lead to an error message because the date format is invalid.
 
 ### Clearing a follow-up date : `followupclear`
