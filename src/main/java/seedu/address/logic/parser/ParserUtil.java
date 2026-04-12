@@ -36,7 +36,6 @@ public class ParserUtil {
             // non-numeric → Invalid command format
             // numeric but negative or too high → OOR error
             try {
-                long val = Long.parseLong(trimmed);
                 throw new ParseException(Messages.MESSAGE_OOR_INDEX);
             } catch (NumberFormatException e) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, usageMessage));
