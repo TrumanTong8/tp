@@ -119,7 +119,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S2-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagramv3.png" width="450" />
+<img src="images/ModelClassDiagramV3.png" width="450" />
 
 The `Model` component,
 
@@ -358,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-** 4a. A duplicate contact is detected (same phone number, or same email address if both contacts have a non-default email provided).
+* 4a. A duplicate contact is detected (same phone number, or same email address if both contacts have a non-default email provided).
 
     * 4a1. FAM shows an error message.
 
@@ -553,7 +553,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. FAM shows an error message.
 
-      Use case ends.
+        Use case ends.
+
 ---
 
 **Use case: Remove followup from a contact**
@@ -595,10 +596,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case resumes at step 2.
 
-* 1c. User inputs notes that are too long (e.g. more than 1000 characters).
-  * 1c1. FAM shows an error message.
+  * 1c. User inputs notes that are too long (e.g. more than 1000 characters).
+    * 1c1. FAM shows an error message.
 
-       Use case ends.
+    Use case ends.
+
 ---
 **Use case: Remove notes from a contact**
 
@@ -654,7 +656,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Tag**: A short label attached to a contact for categorisation
 * **Confirmation**: A user action required to proceed with a destructive operation (e.g., delete)
 * **Command**: A text instruction typed by the user to perform an operation in FAM
---------------------------------------------------------------------------------------------------------------------
+
+---
 
 ## **Appendix: Instructions for manual testing**
 
