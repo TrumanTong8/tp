@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
@@ -57,10 +58,14 @@ public class PersonDetailPanel extends UiPart<Region> {
             email.getStyleClass().add("view-field-empty"); // grey, not underlined
         }
 
-        person.getTags().stream()
+        if (person.getTags().isEmpty()) {
+            tags.getChildren().add(new Text("-"));
+        } else {
+            person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .limit(5) // Prevent overflow
                 .forEach(tag -> tags.getChildren().add(createTagNode(tag.tagName)));
+        }
 
         notes.setText(person.getNotes()
                 .map(Note::toString)
