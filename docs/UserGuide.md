@@ -79,6 +79,8 @@ A **Graphical User Interface (GUI)** is provided too, so that you can have the b
 **Tip #1:** Read the [Command Summary](#command-summary) first for a quick overview of the available commands before 
 proceeding to the detailed feature descriptions below.
 
+</div>
+
 <div markdown="span" class="alert alert-primary">
 
 **Tip #2:** Read the [Notes on Command Format](#features) before diving into individual features, it explains things 
@@ -86,12 +88,13 @@ like optional fields and command parameters that will make using the app much ea
 
 </div>
 
-div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-primary">
 
 **Tip #3:** FAM identifies commands exactly by their spelling, any typo in the command word will lead `Uknown command` error.
 Only command words with the right sequence of characters will be accepted given "Did you mean" command suggestion. For example, `aDd` and `a dd` will result in command suggestions but `addd` won't.
 
 </div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -143,7 +146,7 @@ Adds a person to the address book.
 * Phone number and email must be unique across contacts. If a duplicate phone number or email is detected, the contact will not be added.
 * Email, address, and tag are optional. These values can be updated after the contact is created using the `edit` command.
 * Note can only be added via `note` after a contact is created. Refer to [Add notes to a person](#add-notes-to-a-person--note) for details.
-* Circle and follow-up can only be `circleadd` and `followup` respectively or `edit` to add these fields after the contact is created.
+* Circle and follow-up can only be added [`circleadd`](#add-a-circle-to-a-person--circleadd) and [`followup`](#setting-follow-up-date--followup) respectively. Alternatively, [`edit`](#editing-a-person--edit) can be to add these fields after the contact is created.
 * Refer to [Field Constraints Summary](#field-constraints-summary) for a summary of the field constraints.
 
 Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]…`
@@ -178,6 +181,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [d/FOLLO
 * In [view mode](#view-mode), the index of the displayed contact is always `1`. 
 * If no fields are modified, the command will be rejected.
 * Existing values will be updated to the input values.
+* This command can be used to add a circle or a followup date if there isn't one yet.
 * Notes cannot be edited using the `edit` command, see [Note Add](#add-notes-to-a-person--note) and [Note Clear](#clear-a-persons-notes--noteclear) for notes management.
 * Refer to [Field Constraints Summary](#field-constraints-summary) for a summary of the field constraints.
 * After a successful edit, the app will return to the full contact list.
