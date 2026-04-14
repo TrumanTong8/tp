@@ -272,7 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User input is invalid (e.g., invalid phone/email format).
+* 2a. User input is invalid (e.g. invalid phone/email format).
 
     * 2a1. FAM shows an error message.
 
@@ -831,6 +831,13 @@ testers are expected to do more *exploratory* testing.
 
 **Expected:**
 * Command fails and tag is not removed.
+
+### Negative test case: multiple tag values in one command
+**Steps:**
+1. Run `tagrm 1 t/friend t/colleague`
+
+**Expected:**
+* Command fails (only 1 tag can be removed at a time).
 
 ---
 
